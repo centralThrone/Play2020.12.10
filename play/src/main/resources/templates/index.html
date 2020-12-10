@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>Document</title>
+		<link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="./css/index.css">
+		<script src="./bootstrap/js/jquery.min.js"></script>
+		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=eCFF8pssWgh38ypWfBxVazKCWsjVHv73"></script>
+	</head>
+
+	<body>
+		<div class="screen container-fluid">
+			<!-- 首部固定部分 -->
+			<div class="row header">
+				<!-- 地区 -->
+				<div class="map col-xs-3 col-xs-offset-1">
+					<p class="addmap"></p>
+					<p>晴 15°C</p>
+				</div>
+				<!-- 搜索框 -->
+				<div class="search col-xs-7">
+					<div class="input-group input-group-sm" style="margin-top: 2px">
+						<input type="text" class="form-control" placeholder="Search for...">
+						<span class="input-group-btn">
+							<button class="btn btn-default" type="button">Go!</button>
+						</span>
+					</div>
+				</div>
+			</div>
+			<!-- 中间内容部分 -->
+			<div class="row content">
+				<div class="sort clearfix">
+					<p>综合排序</p>
+					<p>热度排序</p>
+					<p>时间排序</p>
+				</div>
+				<div class="projects" th:each="indexlist:${list}">
+					<form th:action="choosePerson">
+						<div class="project col-xs-12">
+							<a th:href="@{/toPromessage/{proname}(proname=${indexlist.fName})}">
+								<input type="hidden" th:value="${indexlist.fId}" name="fId" />
+								<div class="leftimg col-xs-4">
+									<img th:src="${indexlist.fImg}" /> <span th:text="${indexlist.fName}"></span>
+								</div>
+								<div class="l1 col-xs-2">
+									<div class="starsImg "></div>
+									<p>当前人数:</p>
+									<p class="l1_con1">
+										<span th:text="${indexlist.currentNumber}"></span>
+									</p>
+								</div>
+							</a>
+							<div class="l2 col-xs-2">
+								<p>
+									热度：<span th:text="${indexlist.hotLevel}"></span>
+								</p>
+								<p>预计等待</p>
+								<p class="l2_con1">
+									<span th:text="${indexlist.waitingTime}">分钟</span>
+								</p>
+							</div>
+							<div class="right col-xs-4">
+								<button id="submit" class="btn btn-success" type="submit">确认排队</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<script>
+				function onLine(fid) {
+					alert(fid);
+					//window.location.href="localhost:8081/lineUp?fid="+fid;
+				}
+
+				//提交排队的人数和当前对象
+				$(function(){
+					$("#submit").click(function(){
+
+					})
+				})
+			</script>
+			<!-- 尾部固定部分 -->
+			<div th:replace="footer:: Footer"></div>
+			<hidden id="aaa" th:text="${indexString}" />
+			<script type="text/javascript">
+				var a = $("#aaa").val();
+			</script>
+
+			<script src="./bootstrap/js/bootstrap.min.js"></script>
+			<script src="./js/index.js"></script>
+			<script>
+				$('.sy a').css("color", "#f40");
+			</script>
+		</div>
+	</body>
+
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>Document</title>
+		<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../css/promessage.css">
+	</head>
+
+	<body>
+		<div class="screen container-fluid">
+			<div class="row">
+				<div class="col-xs-12 return">返回上一页<span class="glyphicon glyphicon-menu-right "></span></div>
+				<div class="col-xs-4 col-xs-offset-4" style="margin-bottom: 10px;">
+
+
+					<a class="btn btn-block btn-primary btn glyphicon" th:if="${result}==1" th:href="@{/savecollection/{fid}(fid=${promessageInfo.fId})}">收藏</a>
+					<a class="btn btn-block btn-primary btn glyphicon" th:if="${result}==0" th:href="@{/delcollection/{fid}(fid=${promessageInfo.fId})}">取消收藏</a>
+
+					<!-- <a class="btn btn-block btn-primary btn glyphicon" th:href="@{/savecollection/{fid}(fid=${promessageInfo.fId})}">收藏</a>
+					<a class="btn btn-block btn-primary btn glyphicon" th:href="@{/delcollection/{fid}(fid=${promessageInfo.fId})}">取消收藏</a> -->
+				</div>
+				<!-- <span class="shoucang glyphicon glyphicon-star"></span> -->
+				<img th:src="@{${promessageInfo.imgSrc}}" class="col-xs-12" />
+				<div class="proname col-xs-12">
+					<p class="text-center"><span th:text="${promessageInfo.name}"></span></p>
+				</div>
+				<div class="col-xs-6 waitperson">
+					<p class="text-center">当前排队人数</p>
+					<p class="text-center"><span th:text="${promessageInfo.person}"></span></p>
+				</div>
+				<div class="col-xs-6 waittime">
+					<p class="text-center">预计排队时间</p>
+					<p class="text-center"><span th:text="${promessageInfo.waitingTime}"></span></p>
+				</div>
+				<a th:href="@{/findInMap/{proname}(proname=${promessageInfo.name})}">
+				<div class="col-xs-6 findmap">
+					<span class="glyphicon glyphicon-map-marker"></span>
+					<p class="text-center">在地图上查找</p>
+				</div>
+				</a>
+				<a th:href="@{/choosePerson/{fname}(fname=${promessageInfo.name})}">
+				<div class="col-xs-6 startline">
+				
+					<span class="glyphicon glyphicon-hand-right"></span>
+					<p class="text-center">开始排队</p>
+				</div>
+				</a>
+				<div class="col-xs-12 tour">
+					<p class="text-center">游客须知</p>
+					<p class="text-left">1.适合玩的人群:&nbsp;&nbsp;&nbsp;<span th:text="${promessageInfo.target}"></span></p>
+					<p class="text-left">2.惊险程度:&nbsp;&nbsp;<span th:text="${promessageInfo.threat}"></span></p>
+					<p class="text-left">3.项目开放时间:&nbsp;&nbsp;<span th:text="${promessageInfo.time}"></span></p>
+				</div>
+				<div class="col-xs-12 things">
+					<p class="text-center">注意事项</p>
+					<p class="text-left"><span>照看好同行的老人、小孩，注意安全。如有需要，可至游客中心寻求帮助</span></p>
+				</div>
+			</div>
+		</div>
+
+		<script src="../bootstrap/js/jquery.min.js"></script>
+		<script src="../bootstrap/js/bootstrap.min.js"></script>
+		<script src="../js/promessage.js"></script>
+
+	</body>
+
+</html>

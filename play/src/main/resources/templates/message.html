@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>Document</title>
+		<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../css/message.css">
+	</head>
+
+	<body>
+		<div class="screen container-fluid">
+
+			<!-- 中间内容部分 -->
+			<div class="row content">
+				<img src="../img/xm02.jpg" alt="">
+				<div class="content_msg">
+
+
+					<table class="table">
+						<tr th:each="newInfoTableInfo:${newInfoTableInfo}">
+							<th><span class="glyphicon glyphicon-star" aria-hidden="true"></span></th>
+							<th th:text="${newInfoTableInfo.infoMessage}"></th>
+							<th th:text="${newInfoTableInfo.infoMethod}"></th>
+						</tr>
+
+						<tr th:each="infoTableInfoToFac:${infoTableInfoToFac}">
+							<th><span class="glyphicon glyphicon-heart" aria-hidden="true"></span></th>
+							<th th:text="${infoTableInfoToFac.infoMessage}"></th>
+							<th th:text="${infoTableInfoToFac.infoMethod}"></th>
+						</tr>
+					</table>
+				</div>
+			</div>
+
+
+			<!-- 尾部固定部分 -->
+			<div th:replace="footer:: Footer"></div>
+
+			<script src="../bootstrap/js/jquery.min.js"></script>
+			<script src="../bootstrap/js/bootstrap.min.js"></script>
+			<script src="../js/message.js"></script>
+			<script>
+				$('.xx a').css("color", "#f40");
+			</script>
+	</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>Document</title>
+		<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../css/message.css">
+	</head>
+
+	<body>
+		<form action="/toOnline" method="post">
+		<input type="hidden" name="fname" th:value="${fname}"/>
+			<table class="table">
+				<tr>
+					<th>选择</th>
+					<th style="text-align: center;">用户</th>
+					<th style="text-align: center;">手机号</th>
+				</tr>
+
+				<tr th:each="teamInfo:${teamInfo}">
+					<th>
+						<input type="checkbox" name="chooseperson" th:value="${teamInfo.username}" />
+					</th>
+					<th th:text="${teamInfo.username}" style="text-align: center;"></th>
+					<th th:text="${teamInfo.userphone}" style="text-align: center;"></th>
+				</tr>
+			</table>
+
+			<input type="submit" value="选择" class="btn btn-block btn-success" />
+		</form>
+		<h2> </h2>
+		<a class="btn btn-block btn-danger" href="/index"> <span>返回</span> </a>
+	</body>
+
+</html>

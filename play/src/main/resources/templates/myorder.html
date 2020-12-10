@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>Document</title>
+		<link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="./src/css/xz.css">
+		<style type="text/css">
+			th {
+				text-align: center;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="screen container-fluid">
+			<!-- 中间内容部分 -->
+
+			<!-- 我的订单 -->
+			<div class="row orderForm">
+				<div class="closeBtn col-xs-12" style="padding-top: 10px; padding-bottom: 10px;">
+					<span>我的订单</span> <span class="glyphicon glyphicon-menu-right "></span>
+				</div>
+				<div class="order list-group">
+					<table class="table">
+						<tr>
+							<td align="center">姓名</td>
+							<td align="center">购票时间</td>
+							<td align="center">数量</td>
+						</tr>
+						<tr th:each="orderInfoList:${orderInfoList}">
+							<th th:text="${orderInfoList.username}"></th>
+							<th th:text="${orderInfoList.buyTimeString}"></th>
+							<th th:text="${orderInfoList.number}"></th>
+						</tr>
+					</table>
+				</div>
+				<a href="http://localhost:8081/toAccount" class="btn-primary btn btn-default btn-block">
+					<p class="text-center return" style="height: 25px; padding: 10px;">返回上一页</p>
+				</a>
+			</div>
+
+			<!-- 尾部固定部分 -->
+
+		</div>
+	</body>
+
+</html>

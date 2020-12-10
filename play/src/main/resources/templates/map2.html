@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/map.css">
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=eCFF8pssWgh38ypWfBxVazKCWsjVHv73"></script>
+</head>
+
+<body>
+        
+    <div class="screen container-fluid">
+        <div class="row content">
+            <div id="allmap"></div>
+        </div>
+        <!-- 尾部固定部分 -->
+       <div th:replace="footer:: Footer"></div>
+    <script src="../bootstrap/js/jquery.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+   
+    <script>
+        $('.dt a').css("color", "#f40");
+        
+    </script>
+</body>
+
+</html>
+<script>
+(function(window){
+	/**
+	 *  数据  通过传过来的参数名获取
+	 */
+	var data = {
+		imgSrc: "[[${imgSrc}]]", //图片资源地址
+		name: "[[${facinfo.fName}]]",
+		intro:"[[${facinfo.fIntroduce}]]"
+	}
+	
+	var height = $(window).height();
+	var footerH = $('.footer').height();
+	var ch = height - footerH - 11;
+	$('.content').height(ch);
+	$('#allmap').height(ch);
+	
+	var sContent =
+		"<div class='mmodal'>"+
+		"<p class='mtitle text-left'>"+data.name+"</p>" + 
+		"<div class='mcon'><img class='imgdemo' id='imgDemo' src='"+data.imgSrc+"' />" + 
+		"<p class='mintro'>"+data.intro+"</p></div>" + 
+		"</div>";
+		var map = new BMap.Map("allmap");
+		map.enableScrollWheelZoom();
+		var point = new BMap.Point([[${facinfo.fLocation}]]);
+		var marker = new BMap.Marker(point);
+		var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象
+		map.centerAndZoom(point, 15);
+		map.addOverlay(marker);
+		marker.addEventListener("click", function(){          
+		   this.openInfoWindow(infoWindow);
+		   //图片加载完毕重绘infowindow
+		   document.getElementById('imgDemo').onload = function (){
+			   infoWindow.redraw();   //防止在网速较慢，图片未加载时，生成的信息框高度比图片的总高度小，导致图片部分被隐藏
+			}
+		});
+	
+	
+		//接受参数
+	$(document).ready(function(){
+		proname = getUrlParamValue("proname");
+		// 进行ajax请求操作 获取当前
+		data = {}
+		console.log(proname);
+	 }); 
+	
+	 //获取浏览器上的内容并且进行处理
+	function getUrlParamValue(name) {
+		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+		var r = window.location.search.substr(1).match(reg);
+		if (r != null) return decodeURIComponent(r[2]);
+		return null;
+	}
+}(window))
+</script>

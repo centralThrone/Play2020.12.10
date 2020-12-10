@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>Document</title>
+		<link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="./css/index.css">
+		<script src="./bootstrap/js/jquery.min.js"></script>
+		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=eCFF8pssWgh38ypWfBxVazKCWsjVHv73"></script>
+	</head>
+
+	<body>
+		<div class="screen container-fluid">
+			<div class="closeBtn col-xs-12" style="padding-top: 10px; padding-bottom: 10px;">
+				<span>我的关注</span> <span class="glyphicon glyphicon-menu-right "></span>
+			</div>
+			<div class="row header"></div>
+			<!-- 中间内容部分 -->
+			<div class="row content">
+				<div class="sort clearfix"></div>
+				<div class="projects" th:each="indexInfos:${indexInfos}">
+					<div class="project col-xs-12">
+						<a th:href="@{/toPromessage/{proname}(proname=${indexInfos.name})}">
+							<input type="hidden" name="fId" value="${indexInfos.fId}" />
+							<div class="leftimg col-xs-4">
+								<img th:src="@{${indexInfos.imgSrc}}" /> <span th:text="${indexInfos.name}"></span>
+							</div>
+							<div class="col-xs-4">
+								<div class="starsImg"></div>
+								<p>当前人数:</p>
+								<p class="l1_con1">
+									<span th:text="${indexInfos.person}"></span>
+								</p>
+							</div>
+						</a>
+						<div class="col-xs-4">
+							<p>
+								热度：<span th:text="${indexInfos.hot}"></span>
+							</p>
+							<p>预计等待</p>
+							<p class="l2_con1">
+								<span th:text="${indexInfos.waitTime}"></span>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<a href="http://localhost:8081/toAccount" class="btn-primary btn btn-default btn-block">
+				<p class="text-center return" style="height: 25px; padding: 10px;">返回上一页</p>
+			</a>
+		</div>
+	</body>
+
+	<script src="./bootstrap/js/bootstrap.min.js"></script>
+	<script src="./js/index.js"></script>
+
+</html>

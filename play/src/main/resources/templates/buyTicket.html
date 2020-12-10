@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>Document</title>
+		<link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="./src/css/xz.css">
+		<style type="text/css">
+			th {
+				text-align: center;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="screen container-fluid">
+			<!-- 中间内容部分 -->
+
+			<!-- 购票部分 -->
+
+			<!-- 乘客信息  -->
+			<div class="row userMessage">
+				<div class="closeBtn col-xs-12" style="padding-top: 10px; padding-bottom: 10px;">
+					<span>买票</span> <span class="glyphicon glyphicon-menu-right "></span>
+				</div>
+				<div class="user col-xs-12">
+					<div class="f_btn">
+					<h3>通票：122/人</h3>
+							<div class="pro col-xs-12 btn-default btn-block" style="text-align: center; height: 30px;">选择乘客</div>
+
+					</div>
+					<div class="list-group">
+					<form action="/buy" method="post">
+						<table class="table">
+							<tr>
+								<td align="center">选择</td>
+								<td align="center">姓名</td>
+								<td align="center">手机</td>
+							</tr>
+							
+							<tr th:each="userTeamList:${userTeamList}">
+								<th><input type="checkbox" th:value="${userTeamList.userid}" name="useridList"></th>
+								<th th:text="${userTeamList.username}"></th>
+								<th th:text="${userTeamList.userphone}"></th>
+							</tr>
+							
+						</table>
+						
+						<input type="submit" class="btn btn-danger btn-lg btn-block" value="确认购买">
+							</form>
+					</div>
+					<div class="end">
+						<a href="http://localhost:8081/toAccount" class="btn-primary btn btn-default btn-block">
+							<p class="text-center return" style="height: 25px; padding: 10px; ">返回上一页</p>
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<hidden id="aaa" th:text="${indexString}" />
+			<script type="text/javascript">
+				var a = $("#aaa").val();
+			</script>
+			<script src="./bootstrap/js/jquery.min.js"></script>
+			<script src="./bootstrap/js/bootstrap.min.js"></script>
+			<script src="./src/js/account.js"></script>
+			<script>
+				$('.wd a').css("color", "#f40");
+			</script>
+		</div>
+	</body>
+
+</html>

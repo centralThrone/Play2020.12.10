@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>Document</title>
+		<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../css/online.css">
+	</head>
+
+	<body>
+
+		<div class="screen container-fluid">
+			<!-- 中间内容部分 -->
+			<div class="h row">
+				<div class="col-xs-12">
+					<p class="text-center">正在排队...</p>
+				</div>
+			</div>
+
+			<div class="row content">
+				<div class="line col-xs-12" th:each="userOnLines:${userOnLines}">
+					<div class="leftimg col-xs-4">
+						<img th:src="@{${userOnLines.facImg}}" /> <span th:text="${userOnLines.facName}"></span>
+					</div>
+					<div class="l1 col-xs-2">
+						<div class="starsImg "></div>
+						<p>当前人数:</p>
+						<p class="l1_con1">
+							<span th:text="${userOnLines.nowPerNum}"></span>
+						</p>
+					</div>
+					<div class="l1 col-xs-2">
+						<div class="starsImg "></div>
+						<p>等待时间:</p>
+						<p class="l1_con1">
+							<span th:text="${userOnLines.userWaitTime}"></span>
+						</p>
+					</div>
+					<div class="right col-xs-4">
+						<button class="cancel btn btn-default">取消排队</button>
+					</div>
+				</div>
+
+
+				<!-- 		<div class="line col-xs-12">
+					<div class="leftimg col-xs-4">
+						<img src="+ data.imgsrc + ">
+						<span>fdsfds</span>
+					</div>
+					<div class="l1 col-xs-2">
+						<p>序列号:</p>
+						<p class="l1_con1">fdsfdsf</p>
+					</div>
+					<div class="l2 col-xs-2">
+						<p>游玩时间</p>
+						<p class="l2_con1">fd 分钟</p>
+					</div>
+					<div class="right col-xs-4">
+						<button style="margin-left: 40px;" class="up btn btn-success"><span class="glyphicon glyphicon-arrow-up"></span></button>
+					</div>
+				</div> -->
+			</div>
+
+			<!-- 尾部固定部分 -->
+			<div th:replace="footer:: Footer"></div>
+			<script src="../bootstrap/js/jquery.min.js"></script>
+			<script src="../bootstrap/js/bootstrap.min.js"></script>
+			<script src="../js/online.js"></script>
+			<script>
+				$('.dl a').css("color", "#f40");
+			</script>
+	</body>
+
+</html>
