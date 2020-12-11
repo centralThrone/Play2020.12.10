@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h3>登录失败</h3>
+
+    <h3 th:text="${fail}"></h3>
+
+    <script>
+        $(function(){
+            $("#addShopCart").click(function(){
+                //构造与后台相对应的实体对象
+                const shopCart = new Object();
+                //没有value值，获取它的text值
+                //给对象添加属性并赋值
+                shopCart.shopctGoodsId = $("#goodsId").text();
+                shopCart.shopctUserId = 101;
+                shopCart.shopctGoodsNum = $("#text_box").val();
+                $.ajax({
+                    url:"/addShopCart",
+                    type:"post",
+                    data:{
+                        //转化成JSON数据
+                        shopCart:JSON.stringify(shopCart),
+                    },
+                    //类型
+                    dataType: "json",//参数返回时的类型
+                    //异步传输 true;
+                    async:true,
+                    success:function f(data) {
+                        if(data==true){
+                            window.location.href("addShopCart");
+                        }
+                        alert("向后台传值成功");
+                    },
+                    error:function f(data) {
+                        alert("向后台传值失败");
+                    }
+                });
+            })
+        })
+    </script>
+</body>
+</html>

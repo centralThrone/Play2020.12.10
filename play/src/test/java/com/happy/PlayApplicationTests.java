@@ -5,10 +5,7 @@ import com.happy.controller.LineTableController;
 import com.happy.mapper.CollectionTableMapper;
 import com.happy.mapper.FacilitiesTableMapper;
 import com.happy.mapper.LineTableMapper;
-import com.happy.pojo.CollectionTable;
-import com.happy.pojo.FacilitiesTable;
-import com.happy.pojo.LineTable;
-import com.happy.pojo.Project;
+import com.happy.pojo.*;
 import com.happy.service.FacilitiesTableService;
 import com.happy.service.Impl.FacilitiesTableServiceImpl;
 import com.happy.service.LineTableService;
@@ -28,13 +25,15 @@ class PlayApplicationTests {
     @Autowired
     ProjectService service;
     @Autowired
-    FacilitiesTableMapper facilitiesTableMapper;
-    @Autowired
-    LineTableController lineTableController;
-    @Autowired
     LineTableService lineTableService;
     @Autowired
     UserLineTableService userLineTableService;
+
+    @Autowired
+    FacilitiesTableMapper facilitiesTableMapper;
+
+    @Autowired
+    LineTableController lineTableController;
     @Autowired
     FacilitiesTableController controller;
     @Test
@@ -62,6 +61,11 @@ class PlayApplicationTests {
         //System.out.println(lineTableService.selectOneByFacilitiesId(7L));
 
         //LineController.choosePerson测试
-        lineTableController.toChoosePerson();
+        //lineTableController.toChoosePerson();
+
+        //UserLineTableService测试
+       // System.out.println(userLineTableService.oneUserOneProject(10024L,2L));
+
+
     }
 }

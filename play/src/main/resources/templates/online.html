@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
 	<head>
 		<meta charset="UTF-8">
@@ -21,26 +21,26 @@
 			</div>
 
 			<div class="row content">
-				<div class="line col-xs-12" th:each="userOnLines:${userOnLines}">
+				<div class="line col-xs-12">
 					<div class="leftimg col-xs-4">
-						<img th:src="@{${userOnLines.facImg}}" /> <span th:text="${userOnLines.facName}"></span>
+						<img th:src="@{${project.fImg}}" /> <span th:text="${project.fName}"></span>
 					</div>
 					<div class="l1 col-xs-2">
 						<div class="starsImg "></div>
 						<p>当前人数:</p>
 						<p class="l1_con1">
-							<span th:text="${userOnLines.nowPerNum}"></span>
+							<span th:text="${project.currentNumber}"></span>
 						</p>
 					</div>
 					<div class="l1 col-xs-2">
 						<div class="starsImg "></div>
 						<p>等待时间:</p>
 						<p class="l1_con1">
-							<span th:text="${userOnLines.userWaitTime}"></span>
+							<span th:text="${project.waitingTime}"></span>
 						</p>
 					</div>
 					<div class="right col-xs-4">
-						<button class="cancel btn btn-default">取消排队</button>
+						<button class="cancel btn btn-default" id="btnCancel">取消排队</button>
 					</div>
 				</div>
 
@@ -71,6 +71,28 @@
 			<script src="../js/online.js"></script>
 			<script>
 				$('.dl a').css("color", "#f40");
+				$(function(){
+                    $("#btnCancel").click(function () {
+                        let userID=10024L;
+                        $.ajax({
+							url:"",
+							type:"get",
+							data:{
+								userId:userID,
+							},
+							dataType:"text",
+							success:function(data){
+								if(data==true){
+									window.location.href("index");
+								}
+							},
+							error:function(data){
+								alert("向后台传值失败");
+							}
+
+                        })
+                    })
+                })
 			</script>
 	</body>
 
